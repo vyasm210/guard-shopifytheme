@@ -90,7 +90,6 @@ end
 5. Create new Pull Request
 
 ## Todo
-- Move `shopify_theme` require from Gemfile to `.gemspec` once v0.0.13 is on rubygems.
 - Add some tests
 - Improve `start()` to ask for your shopify API details and write them to config.yml
 
