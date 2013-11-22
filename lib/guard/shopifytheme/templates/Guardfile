@@ -1,0 +1,8 @@
+# Upload Changes to Shopify
+guard :shopifytheme do
+  watch(/assets\/.*/)
+  watch(/config\/.*/)
+  watch(/layout\/.*/)
+  watch(/snippets\/.*/)
+  watch(/templates\/.*/)
+end
