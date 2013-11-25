@@ -1,10 +1,10 @@
 # Guard::Shopifytheme
-[![Gem Version](https://badge.fury.io/rb/guard-shopifytheme.png)](http://badge.fury.io/rb/guard-shopifytheme)
+[![Build Status](https://travis-ci.org/dannysmith/guard-shopifytheme.png?branch=master)](https://travis-ci.org/dannysmith/guard-shopifytheme) [![Gem Version](https://badge.fury.io/rb/guard-shopifytheme.png)](http://badge.fury.io/rb/guard-shopifytheme)
 
 Uses [Guard](https://github.com/guard/guard) to watch for changes and update Shopify when a file is changed. Very similar functionality to [guard-shopify](https://github.com/1337807/guard-shopify), except that it uses the [shopify_theme](https://github.com/Shopify/shopify_theme) gem to do most of the work. This has a couple of advantages:
 
 * shopify_theme is maintained by Shopify, so will usually be up-to-date.
-* The config settings are stored in the project directory (rather than in `~/.guard_shopify`, as with shopify-theme)
+* The config settings are stored in the project directory (rather than in `~/.guard_shopify`, as with guatd-shopify)
 * If you choose to use the `theme watch` command provided by shopify_theme instead of Guard, then everything will still work properly – you don't need to maintain two sets of config files.
 
 ## Installation
@@ -18,7 +18,7 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Or install it yourself with:
 
     $ gem install guard-shopifytheme
 
@@ -40,7 +40,7 @@ Add the Guard definition to your Guardfile with:
     $ guard init guard-shopifytheme
 
 ## Usage
-There aren't many options, so usage is pretty simple:
+There aren't any options, so usage is pretty simple:
 
 ````ruby
 # Upload Changes to Shopify
