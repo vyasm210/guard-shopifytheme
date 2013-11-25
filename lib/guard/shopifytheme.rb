@@ -6,7 +6,7 @@ require 'guard/plugin'
 module Guard
   class Shopifytheme < Plugin
 
-    VERSION = "0.0.1"
+    #VERSION = "0.0.1"
 
     def initialize(options = {})
       super

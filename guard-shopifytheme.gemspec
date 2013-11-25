@@ -5,7 +5,7 @@ require 'guard/shopifytheme/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "guard-shopifytheme"
-  spec.version       = Guard::Shopifytheme::VERSION
+  spec.version       = Guard::ShopifythemeVersion::VERSION
   spec.authors       = ["Danny Smith"]
   spec.email         = ["danny@dasmith.co.uk"]
   spec.description   = %q{Guard::Shopifytheme uses shopify_theme to update shopify when watched files are modified}
