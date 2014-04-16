@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Guard Shopify Theme by dannysmith</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Guard Shopify Theme</h1>
+          <h2>Guard gem for updating shopify through shopify_theme</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/dannysmith/guard-shopifytheme/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/dannysmith/guard-shopifytheme/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/dannysmith/guard-shopifytheme" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="guardshopifytheme" class="anchor" href="#guardshopifytheme"><span class="octicon octicon-link"></span></a>Guard::Shopifytheme</h1>
+
+<p><a href="https://travis-ci.org/dannysmith/guard-shopifytheme"><img src="https://travis-ci.org/dannysmith/guard-shopifytheme.png?branch=master" alt="Build Status"></a> <a href="http://badge.fury.io/rb/guard-shopifytheme"><img src="https://badge.fury.io/rb/guard-shopifytheme.png" alt="Gem Version"></a></p>
+
+<p>Uses <a href="https://github.com/guard/guard">Guard</a> to watch for changes and update Shopify when a file is changed. Very similar functionality to <a href="https://github.com/1337807/guard-shopify">guard-shopify</a>, except that it uses the <a href="https://github.com/Shopify/shopify_theme">shopify_theme</a> gem to do most of the work. This has a couple of advantages:</p>
+
+<ul>
+<li>shopify_theme is maintained by Shopify, so will usually be up-to-date.</li>
+<li>The config settings are stored in the project directory (rather than in <code>~/.guard_shopify</code>, as with guatd-shopify)</li>
+<li>If you choose to use the <code>theme watch</code> command provided by shopify_theme instead of Guard, then everything will still work properly – you don't need to maintain two sets of config files.</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Make sure you have installed <a href="https://github.com/guard/guard">Guard</a>.</p>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'guard-shopifytheme'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself with:</p>
+
+<pre><code>$ gem install guard-shopifytheme
+</code></pre>
+
+<p>If you don't already have <a href="https://github.com/Shopify/shopify_theme">shopify_theme</a> set up, create a <code>config.yml</code> file in your project directory (see <a href="https://github.com/Shopify/shopify_theme#usage">here</a>):</p>
+
+<div class="highlight highlight-yaml"><pre><span class="nn">---</span>
+<span class="l-Scalar-Plain">:api_key</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">YOUR_API_KEY</span>
+<span class="l-Scalar-Plain">:password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">YOUR_PASSWORD</span>
+<span class="l-Scalar-Plain">:store</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">YOURSHOP.myshopify.com</span>
+<span class="l-Scalar-Plain">:theme_id</span><span class="p-Indicator">:</span> <span class="s">'YOUR_THEME_ID'</span>
+<span class="l-Scalar-Plain">:ignore_files</span><span class="p-Indicator">:</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">README.md</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">CHANGELOG.md</span>
+</pre></div>
+
+<p>Add the Guard definition to your Guardfile with:</p>
+
+<pre><code>$ guard init guard-shopifytheme
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>There aren't any options, so usage is pretty simple:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># Upload Changes to Shopify</span>
+<span class="n">guard</span> <span class="ss">:shopifytheme</span> <span class="k">do</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">/assets\/.*/</span><span class="p">)</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">/config\/.*/</span><span class="p">)</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">/layout\/.*/</span><span class="p">)</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">/snippets\/.*/</span><span class="p">)</span>
+  <span class="n">watch</span><span class="p">(</span><span class="sr">/templates\/.*/</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+<h2>
+<a name="an-alternative" class="anchor" href="#an-alternative"><span class="octicon octicon-link"></span></a>An Alternative</h2>
+
+<p>If you don't want to install this gem, you can just add this to your Guardfile:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'guard/plugin'</span>
+
+<span class="n">module</span> <span class="o">::</span><span class="no">Guard</span>
+  <span class="k">class</span> <span class="nc">ShopifyTheme</span> <span class="o">&lt;</span> <span class="o">::</span><span class="no">Guard</span><span class="o">::</span><span class="no">Plugin</span>
+    <span class="k">def</span> <span class="nf">run_all</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">start</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">run_on_changes</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+      <span class="n">paths</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">path</span><span class="o">|</span>
+        <span class="nb">system</span> <span class="s2">"theme upload </span><span class="si">#{</span><span class="n">path</span><span class="si">}</span><span class="s2">"</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">run_on_removals</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+      <span class="n">paths</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">path</span><span class="o">|</span>
+        <span class="nb">system</span> <span class="s2">"theme remove </span><span class="si">#{</span><span class="n">path</span><span class="si">}</span><span class="s2">"</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol><h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>Todo</h2>
+
+<ul>
+<li>Add some tests</li>
+<li>Improve <code>start()</code> to ask for your shopify API details and write them to config.yml</li>
+</ul><h2>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<ul>
+<li>Danny Smith (<a href="http://github.com/dannysmith">@dannysmith</a>)</li>
+<li>Shopfy_Theme by Shopify (<a href="https://github.com/Shopify">@shopify</a>)</li>
+</ul><p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/dannysmith/guard-shopifytheme/trend.png" alt="Bitdeli Badge"></a></p>
+        </section>
+
+        <footer>
+          Guard Shopify Theme is maintained by <a href="https://github.com/dannysmith">dannysmith</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
