@@ -95,6 +95,8 @@ end
 - Improve `start()` to ask for your shopify API details and write them to config.yml
 
 ## Author
+[Project Homepage](http://dannysmith.github.io/guard-shopifytheme)
+
 - Danny Smith ([@dannysmith](http://github.com/dannysmith))
 - Shopfy_Theme by Shopify ([@shopify](https://github.com/Shopify))
 
